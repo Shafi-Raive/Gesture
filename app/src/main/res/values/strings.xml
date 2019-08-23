@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Gesture</string>
+
+    <string-array name="name">
+
+        <item>shafi</item>
+        <item>Raive</item>
+        <item>tanvir</item>
+        <item>noman</item>
+        <item>araf</item>
+        <item>sunny</item>
+        <item>raju</item>
+        <item>nothing</item>
+
+    </string-array>
+
+    <string-array name="name1">
+
+        <item>shafi 1</item>
+        <item>Raive 2</item>
+        <item>tanvir 3</item>
+        <item>noman 4</item>
+        <item>araf 5</item>
+        <item>sunny 5</item>
+        <item>raju 6</item>
+        <item>nothing 7</item>
+
+    </string-array>
+
+</resources>
