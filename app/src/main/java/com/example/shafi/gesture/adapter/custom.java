@@ -12,6 +12,7 @@ import com.example.shafi.gesture.R;
 
 public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
 
+    private static ClickListener clickListener;
     Context context;
     String [] name, name1;
 
@@ -47,7 +48,7 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
         return name.length;
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder{
+    class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         TextView title, dsc;
 
@@ -56,6 +57,50 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
 
             title = itemView.findViewById(R.id.tvTitle);
             dsc = itemView.findViewById(R.id.tvDsc);
+
+            itemView.setOnLongClickListener(this);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onItemClick(getAdapterPosition(), v);
+
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            clickListener.onItemLongClick(getAdapterPosition(), v);
+            return false;
         }
     }
+
+    public interface ClickListener{
+
+        void onItemClick(int position, View v);
+        void onItemLongClick(int position, View v);
+    }
+
+    public void setItemClickListener(ClickListener clickListener){
+
+        custom.clickListener = clickListener;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
