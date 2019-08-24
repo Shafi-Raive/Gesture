@@ -3,12 +3,15 @@ package com.example.shafi.gesture.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shafi.gesture.R;
+import com.example.shafi.gesture.gestureMethod.MenuGestureHandler;
 
 public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
 
@@ -60,7 +63,36 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
 
             itemView.setOnLongClickListener(this);
             itemView.setOnClickListener(this);
+
+            itemView.setOnTouchListener(new MenuGestureHandler() {
+
+                @Override
+                public boolean onSwipeRight() {
+                    Log.d("tag", "onSwipeRight!");
+                    return true;
+                }
+
+                @Override
+                public void onClick() {
+                    Log.d("tag", "onClick!");
+                }
+
+                public boolean onSwipeTop() {
+                    Log.d("tag", "onSwipeTop");
+                    return true;
+                }
+
+                public boolean onSwipeBottom() {
+                    Log.d("tag", "onSwipeBottom");
+                    return true;
+                }
+
+
+            });
         }
+
+
+
 
         @Override
         public void onClick(View v) {
