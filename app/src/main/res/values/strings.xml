@@ -3,27 +3,27 @@
 
     <string-array name="name">
 
-        <item>shafi</item>
+        <item>Shafi</item>
         <item>Raive</item>
-        <item>tanvir</item>
-        <item>noman</item>
-        <item>araf</item>
-        <item>sunny</item>
-        <item>raju</item>
-        <item>nothing</item>
+        <item>Tanvir</item>
+        <item>Noman</item>
+        <item>Araf</item>
+        <item>Sunny</item>
+        <item>Raju</item>
+        <item>Nothing</item>
 
     </string-array>
 
     <string-array name="name1">
 
-        <item>shafi 1</item>
-        <item>Raive 2</item>
-        <item>tanvir 3</item>
-        <item>noman 4</item>
-        <item>araf 5</item>
-        <item>sunny 5</item>
-        <item>raju 6</item>
-        <item>nothing 7</item>
+        <item>2015200000082</item>
+        <item>2015200000089</item>
+        <item>2014200000017</item>
+        <item>2013200000088</item>
+        <item>2012000000638</item>
+        <item>2011200000023</item>
+        <item>201200000033</item>
+        <item>205200000015</item>
 
     </string-array>
 

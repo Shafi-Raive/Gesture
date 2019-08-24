@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,42 +32,44 @@ public class MainActivity extends AppCompatActivity  {
         recyclerView.setAdapter(custom);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        final GestureDetector gestureDetector = new GestureDetector(
-//                new GestureDetector.OnGestureListener() {
-//                    @Override
-//                    public boolean onDown(MotionEvent e) {
-//                        Toast.makeText(getApplicationContext(), "onDown", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public void onShowPress(MotionEvent e) {
-//
-//                    }
-//
-//                    @Override
-//                    public boolean onSingleTapUp(MotionEvent e) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-//                        return false;
-//                    }
-//
-//                    @Override
-//                    public void onLongPress(MotionEvent e) {
-//
-//                    }
-//
-//                    @Override
-//                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-//                        Toast.makeText(getApplicationContext(), "onFling", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    }
-//                });
-//
-//        custom.setOnTouchListener(new View.OnTouchListener() {
+        final GestureDetector gestureDetector = new GestureDetector(
+                new GestureDetector.OnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        Toast.makeText(getApplicationContext(), "onDown", Toast.LENGTH_SHORT).show();
+                        Log.d("tag","onDown :"+e);
+                        return true;
+                    }
+
+                    @Override
+                    public void onShowPress(MotionEvent e) {
+
+                    }
+
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                        Log.d("tag","onScroll :"+e1 +e2);
+                        return true;
+                    }
+
+                    @Override
+                    public void onLongPress(MotionEvent e) {
+
+                    }
+
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                        Toast.makeText(getApplicationContext(), "onFling", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+
+//        custom.OnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(final View view, final MotionEvent event) {
 //                if (gestureDetector.onTouchEvent(event)) {
@@ -83,14 +86,14 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onItemClick(int position, View v) {
 
-                //Toast.makeText(getApplicationContext(), "onItemClick :"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "onItemClick :"+position, Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onItemLongClick(int position, View v) {
 
-               // Toast.makeText(getApplicationContext(), "onItemLongClick :"+position, Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(), "onItemLongClick :"+position, Toast.LENGTH_SHORT).show();
 
             }
         });

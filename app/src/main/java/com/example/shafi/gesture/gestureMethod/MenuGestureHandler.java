@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 public class MenuGestureHandler implements View.OnTouchListener {
 
@@ -29,10 +28,16 @@ public class MenuGestureHandler implements View.OnTouchListener {
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2,
                                final float velocityX, final float velocityY) {
+
             boolean result = false;
             try {
                 final float diffY = e2.getY() - e1.getY();
                 final float diffX = e2.getX() - e1.getX();
+
+                Log.d("tag", "Ye1 :"+e1.getY());
+                Log.d("tag", "Ye2 :"+e2.getY());
+                Log.d("tag", "Xe1 :"+e1.getX());
+                Log.d("tag", "Xe2 :"+e2.getX());
 
                 Log.d("tag", "MX :"+Math.abs(diffX));
                 Log.d("tag", "X :"+diffX);
@@ -90,6 +95,7 @@ public class MenuGestureHandler implements View.OnTouchListener {
     public boolean onSwipeBottom() {
         return true;
     }
+
 
 
 }
