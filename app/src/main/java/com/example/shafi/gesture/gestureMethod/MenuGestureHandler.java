@@ -4,98 +4,55 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 public class MenuGestureHandler implements View.OnTouchListener {
 
     GestureDetector gestureDetector = new GestureDetector(new GestureListener());
 
     @Override
-    public boolean onTouch(final View v, final MotionEvent event) {
-        return gestureDetector.onTouchEvent(event);
-    }
+    public boolean onTouch(View v, MotionEvent event) {
 
-    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        final int actionPeformed = event.getAction();
 
-        private static final int SWIPE_THRESHOLD = 100;
-        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
-        @Override
-        public boolean onSingleTapConfirmed(final MotionEvent e) {
-            onClick(); // my method
-            return super.onSingleTapConfirmed(e);
-        }
+        float xAxis = 0f;
+        float yAxis = 0f;
 
-        @Override
-        public boolean onFling(final MotionEvent e1, final MotionEvent e2,
-                               final float velocityX, final float velocityY) {
+        float lastXAxis = 0f;
+        float lastYAxis = 0f;
 
-            boolean result = false;
-            try {
-                final float diffY = e2.getY() - e1.getY();
-                final float diffX = e2.getX() - e1.getX();
+        switch(actionPeformed){
+            case MotionEvent.ACTION_DOWN:{
+                final float x = event.getX();
+                final float y = event.getY();
 
-                Log.d("tag", "Ye1 :"+e1.getY());
-                Log.d("tag", "Ye2 :"+e2.getY());
-                Log.d("tag", "Xe1 :"+e1.getX());
-                Log.d("tag", "Xe2 :"+e2.getX());
+                lastXAxis = x;
+                lastYAxis = y;
 
-                Log.d("tag", "MX :"+Math.abs(diffX));
-                Log.d("tag", "X :"+diffX);
-                Log.d("tag", "MY :"+Math.abs(diffY));
-                Log.d("tag", "Y :"+diffY);
-                Log.d("tag", "VX :"+Math.abs(velocityX));
-                Log.d("tag", "VY :"+Math.abs(velocityY));
+                Log.d("tag", "X :"+Float.toString(lastXAxis));
+                Log.d("tag", "Y :"+Float.toString(lastYAxis));
 
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-
-                    if (Math.abs(diffX) > SWIPE_THRESHOLD
-                            && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            result = onSwipeRight();
-                        } else {
-                            result = onSwipeLeft();
-                        }
-                    }
-                } else {
-                    if (Math.abs(diffY) < SWIPE_THRESHOLD
-                            && Math.abs(velocityY) < SWIPE_VELOCITY_THRESHOLD) {
-
-                        Log.d("tag", "diffY :"+diffY);
-                        if (diffY > 0) {
-                            result = onSwipeBottom();
-                        } else {
-                            result = onSwipeTop();
-                        }
-                    }
-                }
-            } catch (final Exception exception) {
-                exception.printStackTrace();
+                break;
             }
-            return result;
+
+            case MotionEvent.ACTION_MOVE:{
+                final float x = event.getX();
+                final float y = event.getY();
+
+                final float dx = x - lastXAxis;
+                final float dy = y - lastYAxis;
+
+                xAxis += dx;
+                yAxis += dy;
+
+                Log.d("tag", "MOV X :"+Float.toString(xAxis));
+                Log.d("tag", "MOV Y :"+Float.toString(yAxis));
+                break;
+            }
         }
-    }
-
-    public boolean onSwipeRight() {
         return true;
     }
-
-
-    public boolean onSwipeLeft() {
-        Log.d("tag", "onSwipeLeft");
-        return true;
-    }
-
-    public void onClick() {
-    }
-
-    public boolean onSwipeTop() {
-        return true;
-    }
-
-    public boolean onSwipeBottom() {
-        return true;
-    }
-
 
 
 }

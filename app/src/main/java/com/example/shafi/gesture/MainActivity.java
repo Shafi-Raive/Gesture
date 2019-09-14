@@ -4,70 +4,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.shafi.gesture.adapter.custom;
+import com.example.shafi.gesture.gestureMethod.MenuGestureHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity  {
 
-    String[] title, dsc;
-    RecyclerView recyclerView;
+    private List<Model> mModelList;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    TextView x,y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        custom custom;
-        recyclerView = findViewById(R.id.recyclerView);
-        title = getResources().getStringArray(R.array.name);
-        dsc = getResources().getStringArray(R.array.name1);
 
-        custom = new custom(MainActivity.this, title, dsc);
+        x= findViewById(R.id.tvXValue);
+        y= findViewById(R.id.tvYValue);
 
-        recyclerView.setAdapter(custom);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mAdapter = new custom(MainActivity.this, getListData());
+        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setAdapter(mAdapter);
+        
 
-        final GestureDetector gestureDetector = new GestureDetector(
-                new GestureDetector.OnGestureListener() {
-                    @Override
-                    public boolean onDown(MotionEvent e) {
-                        Toast.makeText(getApplicationContext(), "onDown", Toast.LENGTH_SHORT).show();
-                        Log.d("tag","onDown :"+e);
-                        return true;
-                    }
 
-                    @Override
-                    public void onShowPress(MotionEvent e) {
 
-                    }
 
-                    @Override
-                    public boolean onSingleTapUp(MotionEvent e) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                        Log.d("tag","onScroll :"+e1 +e2);
-                        return true;
-                    }
-
-                    @Override
-                    public void onLongPress(MotionEvent e) {
-
-                    }
-
-                    @Override
-                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                        Toast.makeText(getApplicationContext(), "onFling", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
 
 //        custom.OnTouchListener(new View.OnTouchListener() {
 //            @Override
@@ -82,20 +53,28 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        custom.setItemClickListener(new custom.ClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
+//        custom.setItemClickListener(new custom.ClickListener() {
+//            @Override
+//            public void onItemClick(int position, View v) {
+//
+//                Toast.makeText(getApplicationContext(), "onItemClick :"+position, Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onItemLongClick(int position, View v) {
+//
+//               Toast.makeText(getApplicationContext(), "onItemLongClick :"+position, Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+    }
 
-                Toast.makeText(getApplicationContext(), "onItemClick :"+position, Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onItemLongClick(int position, View v) {
-
-               Toast.makeText(getApplicationContext(), "onItemLongClick :"+position, Toast.LENGTH_SHORT).show();
-
-            }
-        });
+    private List<Model> getListData() {
+        mModelList = new ArrayList<>();
+        for (int i = 1; i <= 25; i++) {
+            mModelList.add(new Model("TextView " + i));
+        }
+        return mModelList;
     }
 }

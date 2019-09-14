@@ -4,6 +4,38 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginStart="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X : "/>
+
+        <TextView
+            android:id="@+id/tvXValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="value"/>
+
+        <TextView
+            android:layout_marginStart="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y : "/>
+
+        <TextView
+            android:id="@+id/tvYValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="value"/>
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -13,13 +45,6 @@
         android:textSize="18sp"
         android:padding="10dp"/>
 
-    <TextView
-        android:id="@+id/tvDsc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Shafi Raive"
-        android:gravity="center"
-        android:textSize="18sp"/>
 
     <View
         android:layout_width="match_parent"

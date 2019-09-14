@@ -1,28 +1,29 @@
 package com.example.shafi.gesture.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.shafi.gesture.Model;
 import com.example.shafi.gesture.R;
 import com.example.shafi.gesture.gestureMethod.MenuGestureHandler;
+
+import java.util.List;
 
 public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
 
     private static ClickListener clickListener;
     Context context;
-    String [] name, name1;
+    private List<Model> mModelList;
 
-    public custom(Context context, String[] name, String[] name1) {
+    public custom(Context context, List<Model> modelList) {
         this.context = context;
-        this.name = name;
-        this.name1 = name1;
+        mModelList = modelList;
     }
 
 
@@ -39,56 +40,42 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final myViewHolder holder, int position) {
 
-        myViewHolder.title.setText(name[i]);
-        myViewHolder.dsc.setText(name1[i]);
+        final Model model = mModelList.get(position);
+        holder.textView.setText(model.getText());
+        holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.setSelected(!model.isSelected());
+                holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+                holder.view.setOnTouchListener(new MenuGestureHandler());
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return mModelList == null ? 0 : mModelList.size();
     }
 
     class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
-        TextView title, dsc;
+        private View view;
+        private TextView textView;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.tvTitle);
-            dsc = itemView.findViewById(R.id.tvDsc);
+            view = itemView;
+            textView = (TextView) itemView.findViewById(R.id.tvTitle);
 
             itemView.setOnLongClickListener(this);
             itemView.setOnClickListener(this);
 
-            itemView.setOnTouchListener(new MenuGestureHandler() {
-
-                @Override
-                public boolean onSwipeRight() {
-                    Log.d("tag", "onSwipeRight!");
-                    return true;
-                }
-
-                @Override
-                public void onClick() {
-                    Log.d("tag", "onClick!");
-                }
-
-                public boolean onSwipeTop() {
-                    Log.d("tag", "onSwipeTop");
-                    return true;
-                }
-
-                public boolean onSwipeBottom() {
-                    Log.d("tag", "onSwipeBottom");
-                    return true;
-                }
-
-
-            });
+            ///itemView.setOnTouchListener(new MenuGestureHandler());
         }
 
 
@@ -97,6 +84,8 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
         @Override
         public void onClick(View v) {
             clickListener.onItemClick(getAdapterPosition(), v);
+
+
 
         }
 
