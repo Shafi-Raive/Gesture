@@ -7,11 +7,63 @@
     tools:context=".MainActivity">
 
 
+    <RelativeLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/textX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X:value  "
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/txtMoveX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@+id/textX"
+            android:text="Mov_X: Value"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textX"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="2sp"
+            android:layout_marginTop="9dp"
+            android:text="Y : Value"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtMovY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtMoveX"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/textY"
+            android:text="MOV_Y:Value"
+            android:textSize="15dp" />
+
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_height="500dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp" />
 </android.support.constraint.ConstraintLayout>

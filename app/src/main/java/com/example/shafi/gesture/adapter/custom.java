@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.shafi.gesture.Model;
 import com.example.shafi.gesture.R;
-import com.example.shafi.gesture.gestureMethod.MenuGestureHandler;
 
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class custom extends RecyclerView.Adapter<custom.myViewHolder> {
             public void onClick(View view) {
                 model.setSelected(!model.isSelected());
                 holder.view.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
-                holder.view.setOnTouchListener(new MenuGestureHandler());
+              //  holder.view.setOnTouchListener(new MenuGestureHandler());
             }
         });
 
